@@ -1,5 +1,6 @@
 import html2text
 import urllib2
+import spacy
 
 import sys
 reload(sys)
@@ -15,8 +16,13 @@ def MapOpenDoc(doc):
     h = html2text.HTML2Text()
     return h.handle(rawhtmltext)
 
-def MapSentanceMap():
-    i=0
+def MapSentenceMap(sentence):
+    nlp = spacy.load('en')
+    doc = nlp(sentence)
+    for word in doc:
+        print(word)
+        print(word.pos_)
+        print("")
 
 def MapUploadToDatabase():
     i=0
@@ -31,7 +37,7 @@ def MapNetwork():
         doctext = MapOpenDoc(doc)
         doctext = doctext.split(".")
         for sentence in doctext:
-            print sentence
+            MapSentenceMap(sentence)
 
 MapNetwork()
 
