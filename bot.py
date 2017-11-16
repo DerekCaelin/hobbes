@@ -1,6 +1,7 @@
 import html2text
 import urllib2
 import spacy
+from nltk import tokenize
 
 import sys
 reload(sys)
@@ -8,7 +9,7 @@ sys.setdefaultencoding("UTF8")
 
 
 def MapGatherDocsAndUrls():
-    return ["https://en.wikipedia.org/wiki/Conflict_in_the_Niger_Delta"]
+    return ["https://www.washingtonpost.com/news/monkey-cage/wp/2017/11/15/to-understand-the-coup-in-zimbabwe-you-need-to-know-more-about-grace-mugabe/"]
 
 def MapOpenDoc(doc):
     rawhtmltext = urllib2.urlopen(doc).read().decode('utf8')
@@ -18,11 +19,41 @@ def MapOpenDoc(doc):
 
 def MapSentenceMap(sentence):
     nlp = spacy.load('en')
-    doc = nlp(sentence)
-    for word in doc:
-        print(word)
-        print(word.pos_)
-        print("")
+    sentence = nlp(sentence)
+
+    gotsubjnoun = False
+    gotverb = False
+    gotdirectobject = False
+
+    subjnoun1 = ""
+    verb = ""
+    directobject1 = ""
+    directobject2 = ""
+
+    print ("processing: "+str(sentence))
+
+    for word in sentence:
+
+        if word.dep_ == "nsubj" and word.pos_ == "PROPN":
+            gotsubjnoun = True
+            if subjnoun1 == "":
+                subjnoun1 = word.text
+        if word.dep_ == "ROOT":
+            gotverb = True
+            if verb == "":
+                verb = word.text
+        if word.dep_ == "dobj" and (word.pos_ == "PROPN"):
+            gotdirectobject = True
+            if directobject1 == "":
+                directobject1 = word.text
+
+    if gotsubjnoun == True and gotverb == True and gotdirectobject == True:
+        print("found")
+        sentencepackage = {"subjnoun1" : subjnoun1,
+                           "verb" : verb,
+                           "directobject1" : directobject1}
+        print (sentencepackage)
+
 
 def MapUploadToDatabase():
     i=0
@@ -35,7 +66,7 @@ def MapNetwork():
 
     for doc in doclist:
         doctext = MapOpenDoc(doc)
-        doctext = doctext.split(".")
+        doctext = tokenize.sent_tokenize(doctext)
         for sentence in doctext:
             MapSentenceMap(sentence)
 
