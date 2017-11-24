@@ -1,0 +1,30 @@
+from distutils.core import setup
+
+setup(
+    name='Hobbes',
+    version='',
+    packages=['mycroft-core.doc', 'mycroft-core.test', 'mycroft-core.test.unittests', 'mycroft-core.test.unittests.api',
+              'mycroft-core.test.unittests.stt', 'mycroft-core.test.unittests.lock', 'mycroft-core.test.unittests.util',
+              'mycroft-core.test.unittests.audio', 'mycroft-core.test.unittests.audio.services.failing',
+              'mycroft-core.test.unittests.audio.services.working', 'mycroft-core.test.unittests.client',
+              'mycroft-core.test.unittests.skills', 'mycroft-core.test.unittests.skills.test_skill',
+              'mycroft-core.test.unittests.version', 'mycroft-core.test.unittests.configuration',
+              'mycroft-core.test.integrationtests', 'mycroft-core.test.integrationtests.skills', 'mycroft-core.mycroft',
+              'mycroft-core.mycroft.api', 'mycroft-core.mycroft.stt', 'mycroft-core.mycroft.tts',
+              'mycroft-core.mycroft.lock', 'mycroft-core.mycroft.util', 'mycroft-core.mycroft.audio',
+              'mycroft-core.mycroft.audio.services', 'mycroft-core.mycroft.audio.services.vlc',
+              'mycroft-core.mycroft.audio.services.mopidy', 'mycroft-core.mycroft.audio.services.mpg123',
+              'mycroft-core.mycroft.audio.services.chromecast', 'mycroft-core.mycroft.client',
+              'mycroft-core.mycroft.client.text', 'mycroft-core.mycroft.client.speech',
+              'mycroft-core.mycroft.client.speech.recognizer', 'mycroft-core.mycroft.client.enclosure',
+              'mycroft-core.mycroft.dialog', 'mycroft-core.mycroft.skills', 'mycroft-core.mycroft.metrics',
+              'mycroft-core.mycroft.session', 'mycroft-core.mycroft.version', 'mycroft-core.mycroft.identity',
+              'mycroft-core.mycroft.filesystem', 'mycroft-core.mycroft.messagebus',
+              'mycroft-core.mycroft.messagebus.client', 'mycroft-core.mycroft.messagebus.service',
+              'mycroft-core.mycroft.configuration'],
+    url='',
+    license='',
+    author='derek',
+    author_email='',
+    description=''
+)
