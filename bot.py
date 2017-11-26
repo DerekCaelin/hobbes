@@ -9,7 +9,7 @@ sys.setdefaultencoding("UTF8")
 
 
 def MapGatherDocsAndUrls():
-    return ["https://www.washingtonpost.com/news/monkey-cage/wp/2017/11/15/to-understand-the-coup-in-zimbabwe-you-need-to-know-more-about-grace-mugabe/"]
+    return ["https://www.washingtonpost.com/news/monkey-cage/wpc/2017/11/15/to-understand-the-coup-in-zimbabwe-you-need-to-know-more-about-grace-mugabe/"]
 
 def MapOpenDoc(doc):
     rawhtmltext = urllib2.urlopen(doc).read().decode('utf8')
